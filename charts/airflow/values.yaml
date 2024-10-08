@@ -1,13 +1,37 @@
-defaultAirflowTag: "2.5.3-python3.8"
-executor: "KubernetesExecutor"
-extraSecrets:
-  "{{ .Release.Name }}-example":
+airflow:
+  executor: "KubernetesExecutor"
+  createUserJob:
     useHelmHooks: false
-    data: |
-      AIRFLOW_VAR_HELLO_MESSAGE: "Hi!"
-
-extraConfigMaps:
-  "{{ .Release.Name }}-example":
+    applyCustomEnv: false
+  migrateDatabaseJob:
     useHelmHooks: false
-    data: |
-      AIRFLOW_VAR_HELLO_MESSAGE: "Hi!"
+    applyCustomEnv: false
+    jobAnnotations:
+      "argocd.argoproj.io/hook": Sync
+  postgresql: # by default postgres shipped by the chart
+    enabled: false
+  data:
+    metadataConnection:
+      user: postgres
+      pass: postgres
+      protocol: postgresql
+      host: airflow-poc-postgres-ha-postgresql.airswagg.svc.cluster.local
+      port: 5432
+      db: "airflow"
+global:
+  postgresql:
+    database: "airflow"
+    username: "postgres"
+    password: "postgres"
+    repmgrUsername: "repmgr"
+    repmgrPassword: "repmgr_password"
+    postgresqlPassword: "postgres"
+    postgresqlDatabase: "airflow"
+  pgpool:
+    adminPassword: "postgres"
+    adminUsername: "admin"
+postgres-ha: # HA postgres
+  postgresql:
+    postgresPassword: "postgres"
+  pgpool:
+    adminPassword: "postgres"
