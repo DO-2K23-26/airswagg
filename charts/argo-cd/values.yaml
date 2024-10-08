@@ -8,3 +8,15 @@ argo-cd:
   server:
     extraArgs:
       - --insecure
+  controller:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+  repoServer:
+    resources:
+      requests:controller:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
