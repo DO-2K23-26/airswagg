@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: airflow
+  namespace: default
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/DO-2K23-26/airswagg'
+    path: charts/airflow
+    targetRevision: test
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

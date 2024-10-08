@@ -24,13 +24,13 @@ airflow:
   migrateDatabaseJob:
     useHelmHooks: false
     applyCustomEnv: false
-  dags:  
-    gitSync:    
-      enabled: true    
-      repo: ssh://git@yoururl/airflow-repo.git    
-      branch: prd    
-      rev: HEAD    
-      sshKeySecret: airflow-git-ssh-secret
+  #dags:  
+    #gitSync:    
+      #enabled: true    
+      #repo: ssh://git@github.com:DO-2K23-26/airswagg.git
+      #branch: test
+      #rev: HEAD    
+      #sshKeySecret: airflow-git-ssh-secret
 
 postgres-ha: # HA postgres
   postgresPassword: "postgres"
