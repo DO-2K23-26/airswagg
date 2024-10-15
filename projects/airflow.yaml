@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'git@yourgiturl/argocd-repo.git'
-    path: helm-charts/airflow
-    targetRevision: prd
+    repoURL: 'https://github.com/DO-2K23-26/airswagg'
+    path: charts/airflow
+    targetRevision: HEAD
     helm:
       valueFiles:
         - values.yaml
