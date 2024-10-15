@@ -1,4 +1,13 @@
 airflow:
+  dags:
+      gitSync:
+        enabled: true
+        repo: https://github.com/Courtcircuits/airflow.git
+        branch: main
+        rev: HEAD
+        subPath: "dags"
+      persistence:
+        enabled: false
   executor: "KubernetesExecutor"
   fernetkeysecretname: fernetkeysecret
   webserverSecretKeySecretName: webserversecret
