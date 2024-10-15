@@ -15,7 +15,7 @@ airflow:
       user: postgres
       pass: postgres
       protocol: postgresql
-      host: airflow-postgres-ha-postgresql.airswagg.svc.cluster.local
+      host: airflow-postgres-ha-postgresql.argocd.svc.cluster.local
       port: 5432
       db: "airflow"
 global:
